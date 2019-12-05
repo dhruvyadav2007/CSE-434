@@ -970,33 +970,7 @@ int main() {
                 }
                 else
                 {
-                    //update the times
-                    //start the user timer
-                    user3start = time(NULL);
-
-                    //set the end time
-                    user3endwait = user3start + seconds;
-
-                    memset(recent_msg, 0, sizeof(recent_msg));
-                    memcpy(recent_msg, recv_buffer + 4, recv_buffer[3]);
-                    //                                            char user_input[1024] = "continuing session\n";
-                    //add user 1 post to all user 1 arrays
-                    strcpy(user3Array[user3Counter],recent_msg);
-                    strcpy(user13Array[user13Counter],recent_msg);
-                    strcpy(user23Array[user23Counter],recent_msg);
-
-                    //update the counters
-                    user3Counter++;
-                    user13Counter++;
-                    user23Counter++;
-
-                    int m = strlen(recent_msg);
-                    memcpy(send_buffer + 4, recent_msg, m);
-
-                    send_buffer[0] = 0x4A; // These are constants you defined.
-                    send_buffer[1] = 0x56;
-                    send_buffer[2] = 0x05;//acknowledgement of posting
-                    send_buffer[3] = m;
+                   
 
                 }
 
@@ -1073,43 +1047,7 @@ int main() {
                     } //end of if == user2
                     else if(strncmp(recent_msg, "user1",5) == 0)
                     {
-                        if(strncmp(user3Subscription, "user2", 5)== 0)
-                        {
-                            strcpy(user3Subscription, "user12");
-                            char user_input[1024] = "subscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "none", 4) == 0)
-                        {
-                            strcpy(user3Subscription, "user1");
-                            char user_input[1024] = "subscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "user1", 5) == 0)
-                        {
-                            strcpy(user3Subscription, "user1");
-                            char user_input[1024] = "subscribe_ack#failed\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-
+                        
                     }//end if == user3
                         //}
                     else
@@ -1148,138 +1086,7 @@ int main() {
                     send_buffer[2] = 0x04;//acknowledgement of posting
                     send_buffer[3] = m;
                 }
-                else
-                {
-                    //update the times
-                    //start the user timer
-                    user3start = time(NULL);
-
-                    //set the end time
-                    user3endwait = user3start + seconds;
-                    memset(recent_msg, 0, sizeof(recent_msg));
-                    memcpy(recent_msg, recv_buffer + 4, recv_buffer[3]);
-
-                    if(strncmp(recent_msg, "user2",5) == 0)
-                    {
-                        if(strncmp(user3Subscription, "user12", 6)== 0)
-                        {
-                            strcpy(user3Subscription, "user1");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "user2", 5) == 0)
-                        {
-                            strcpy(user3Subscription, "none");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "user1", 5) == 0)
-                        {
-                            strcpy(user3Subscription, "user1");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "none", 4) == 0)
-                        {
-                            strcpy(user3Subscription, "none");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-
-                    } //end of if == user2
-                    else if(strncmp(recent_msg, "user1",5) == 0)
-                    {
-                        if(strncmp(user3Subscription, "user12", 6)== 0)
-                        {
-                            strcpy(user3Subscription, "user2");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "user2", 5) == 0)
-                        {
-                            strcpy(user3Subscription, "user2");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "user1", 5) == 0)
-                        {
-                            strcpy(user3Subscription, "none");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                        else if(strncmp(user3Subscription, "none", 4) == 0)
-                        {
-                            strcpy(user3Subscription, "none");
-                            char user_input[1024] = "unsubscribe_ack#successful\n";
-                            int m = strlen(user_input);
-                            memcpy(send_buffer + 5, user_input, m);
-
-                            send_buffer[0] = 0x4A; // These are constants you defined.
-                            send_buffer[1] = 0x56;
-                            send_buffer[2] = 0x06;//acknowledgement of posting
-                            send_buffer[3] = m;
-                        }
-                    }//end if == user3
-                    else
-                    {
-                        memset(recent_msg, 0, sizeof(recent_msg));
-                        memcpy(recent_msg, recv_buffer + 4, recv_buffer[3]);
-                        char user_input[1024] = "session reset by server\n";
-                        //bool user1Online = false;
-                        int m = strlen(user_input);
-                        memcpy(send_buffer + 4, user_input, m);
-
-                        send_buffer[0] = 0x4A; // These are constants you defined.
-                        send_buffer[1] = 0x56;
-                        send_buffer[2] = 0x08;//acknowledgement of posting
-                        send_buffer[3] = m;
-
-                    }
-                } //in time end else
-
-            }//end else if == 9
+                
             else
             {
                 continue;
